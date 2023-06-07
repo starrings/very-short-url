@@ -5,7 +5,7 @@ const ENV = process.env.NODE_ENV || 'development';
 
 export const APP_CONFIG = {
   API_PREFIX: process.env.API_PREFIX || '/api',
-  PORT: Number(process.env.PORT) || 4010,
+  PORT: Number(process.env.PORT) || 8282,
 };
 
 export const DB_CONFIG = {

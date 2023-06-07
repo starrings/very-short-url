@@ -1,18 +1,11 @@
-import express, {Request, Response} from 'express';
+import { App } from './App';
+import { APP_CONFIG } from './config/Env';
 
-class App {
-    public application: express.Application;
+try {
+  const app = new App();
+	const port = APP_CONFIG.PORT;
 
-    constructor() {
-        this.application = express();
-    }
-};
-
-const app = new App().application;
-
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World!');
-});
-
-const PORT = 8282;
-app.listen(PORT, () => console.log(`Listen on port ${PORT}`));
+	app.createExpressServer(port);
+} catch (err) {
+	console.error(err);	 
+}

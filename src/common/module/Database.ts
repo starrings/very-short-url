@@ -11,7 +11,7 @@ export const createDBPool = () => {
       user: DB_CONFIG.DB_USER,
       password: DB_CONFIG.DB_PASSWORD,
       database: DB_CONFIG.DB_DATABASE,
-      charset: 'utg8mb4',
+      charset: 'utf8mb4',
     });
   } catch (err) {
     console.log('[mysql.connector][init][Error]: ' + err);
