@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import bodyParser from 'body-parser';
 import express from 'express';
 import morgan from 'morgan';
@@ -38,7 +39,8 @@ export class App {
   // 서버 시작
   public async createExpressServer(port: number): Promise<void> {
     try {
-      useContainer(Container);
+      // typedi를 사용하는 경우 사용
+      useContainer(Container); 
       useExpressServer(this.app);
 
       this.app.listen(port, () => {
