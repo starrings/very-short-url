@@ -1,12 +1,12 @@
 import { APP_CONFIG } from './Env';
-import { UserController } from '../business/user/api/UserController';
+// import { ShortUrlController } from '../business/short-url/api/ShortUrlController';
 
-export const routingControllerOptions = {
-  cors: true,
-  defaultErrorHandler: false,
-  routePrefix: APP_CONFIG.API_PREFIX,
-  controllers: [
-    UserController,
-  ],
-  middlewares: [],
-}
+// export const routingControllerOptions = {
+//   cors: true,
+//   defaultErrorHandler: false,
+//   routePrefix: APP_CONFIG.API_PREFIX,
+//   controllers: [
+//     ShortUrlController,
+//   ],
+//   middlewares: [],
+// }
