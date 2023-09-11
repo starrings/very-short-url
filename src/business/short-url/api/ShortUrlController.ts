@@ -26,7 +26,7 @@ import { convertShortUrlRequest } from '../model/request/ShortUrlRequest';
 export class ShortUrlController {
   constructor(private shortUrlService: ShortUrlService) {}
 
-  @HttpCode(RESPONSE_CODE.SUCCESS.OK)
+  @HttpCode(RESPONSE_CODE.SUCCESS.CREATED)
   @Post('/')
   public async convertShortUrl(@Body() convertShortUrlRequest: convertShortUrlRequest, @Res() res: Response){
     return this.shortUrlService.convertShortUrl(convertShortUrlRequest);
