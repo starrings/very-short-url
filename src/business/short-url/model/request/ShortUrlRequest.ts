@@ -1,6 +1,6 @@
 import { IsUrl } from 'class-validator';
 
-export class ShortUrlRequest {
+export class convertShortUrlRequest {
   @IsUrl()
-  public shortUrl!: string;
+  public originalUrl!: string;
 }

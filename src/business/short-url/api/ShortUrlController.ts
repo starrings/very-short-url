@@ -14,21 +14,21 @@ import {
   Param,
 } from 'routing-controllers';
 import { Service } from 'typedi';
-
+import { Response } from 'express';
 // utils
 import { RESPONSE_CODE } from '../../../config/StatusCode';
 // services
+import { ShortUrlService } from '../application/ShortUrlService';
 // requests, response
-import { ShortUrlRequest } from '../model/request/ShortUrlRequest';
+import { convertShortUrlRequest } from '../model/request/ShortUrlRequest';
+@JsonController('/short-url')
+@Service()
+export class ShortUrlController {
+  constructor(private shortUrlService: ShortUrlService) {}
 
-// @JsonController('/')
-// @Service()
-// export class ShortUrlController {
-//   constructor(private shortUrlService: ShortUrlService) {}
-
-//   @HttpCode(RESPONSE_CODE.SUCCESS.OK)
-//   @Post('/short-url')
-//   public async insertShortUrl(@Body() shortUrlRequest: ShortUrlRequest, @Res() res: Response){
-
-//   }
-// }
+  @HttpCode(RESPONSE_CODE.SUCCESS.OK)
+  @Post('/')
+  public async convertShortUrl(@Body() convertShortUrlRequest: convertShortUrlRequest, @Res() res: Response){
+    return this.shortUrlService.convertShortUrl(convertShortUrlRequest);
+  }
+}
