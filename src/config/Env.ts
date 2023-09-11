@@ -8,7 +8,7 @@ dotenv.config({
 });
 
 export const APP_CONFIG = {
-  API_PREFIX: process.env.API_PREFIX || '/api',
+  API_PREFIX: process.env.API_PREFIX ?? '/api',
   PORT: Number(process.env.PORT) || 8282,
 };
 
