@@ -20,10 +20,8 @@ export class ShortUrlService {
   public async convertShortUrl(convertShortUrlRequest: convertShortUrlRequest) {
     const { originalUrl } = convertShortUrlRequest;
     const shortUrl = await this.shortenUrl();
-    console.log(shortUrl);
     
     await this.shortUrlRepository.insertShortUrl(originalUrl, shortUrl);
-    console.log(shortUrl);
     return new ConvertShortUrlResponse(shortUrl);
   }
 

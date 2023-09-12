@@ -21,7 +21,7 @@ import { RESPONSE_CODE } from '../../../config/StatusCode';
 import { ShortUrlService } from '../application/ShortUrlService';
 // requests, response
 import { convertShortUrlRequest } from '../model/request/ShortUrlRequest';
-@JsonController('/')
+@JsonController('/short-url')
 @Service()
 export class ShortUrlController {
   constructor(private shortUrlService: ShortUrlService) {}
