@@ -18,6 +18,7 @@ import { Service } from 'typedi';
 import { Response } from 'express';
 // utils
 import { RESPONSE_CODE } from '../../../config/StatusCode';
+import { RESPONSE_STATUS } from '../../../config/Status';
 import { SHORT_URL_DESCRIPTION } from '../../../../dosc/openApi/description/ShortUrlDescription';
 import { SHORT_URL_RESPONSES } from '../../../../dosc/openApi/responses/ShortUrlResponses';
 // services
@@ -40,6 +41,10 @@ export class ShortUrlController {
   })
   @ResponseSchema(ResponseBody)
   public async convertShortUrl(@Body() convertShortUrlRequest: convertShortUrlRequest, @Res() res: Response){
-    return this.shortUrlService.convertShortUrl(convertShortUrlRequest);
+    return new ResponseBody(
+      RESPONSE_STATUS.SUCCESS.CREATED,
+      "url 단축 성공!",
+      await this.shortUrlService.convertShortUrl(convertShortUrlRequest),
+    );
   }
 }

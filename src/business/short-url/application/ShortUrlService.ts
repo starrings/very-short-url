@@ -9,7 +9,6 @@ import {
 
 import { convertShortUrlRequest } from '../model/request/ShortUrlRequest';
 
-import { ConvertShortUrlResponse } from '../response/ShortUrlResponse';
 
 @Service()
 export class ShortUrlService {
@@ -19,10 +18,10 @@ export class ShortUrlService {
 
   public async convertShortUrl(convertShortUrlRequest: convertShortUrlRequest) {
     const { originalUrl } = convertShortUrlRequest;
-    const shortUrl = await this.shortenUrl();
+    const shortUrl = this.shortenUrl();
     
     await this.shortUrlRepository.insertShortUrl(originalUrl, shortUrl);
-    return new ConvertShortUrlResponse(shortUrl);
+    return { shortUrl };
   }
 
   private shortenUrl() {
