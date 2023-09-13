@@ -40,11 +40,28 @@ export class ShortUrlController {
     responses: SHORT_URL_RESPONSES['[post] /'],
   })
   @ResponseSchema(ResponseBody)
-  public async convertShortUrl(@Body() convertShortUrlRequest: convertShortUrlRequest, @Res() res: Response){
+  public async convertShortUrl(@Body() convertShortUrlRequest: convertShortUrlRequest) {
     return new ResponseBody(
       RESPONSE_STATUS.SUCCESS.CREATED,
-      "url 단축 성공!",
+      'url 단축 성공!',
       await this.shortUrlService.convertShortUrl(convertShortUrlRequest),
     );
   }
+
+  @HttpCode(RESPONSE_CODE.SUCCESS.OK)
+  @Get('/original-url/:shortUrl')
+  @OpenAPI({
+    summary: '단축 url로 원본 url 조회',
+    statusCode: RESPONSE_CODE.SUCCESS.OK,
+    description: SHORT_URL_DESCRIPTION['[get] /original-url/:shortUrl'],
+    responses: SHORT_URL_RESPONSES['[get] /original-url/:shortUrl'],
+  })
+  @ResponseSchema(ResponseBody)
+  public async getOriginalUrl(@Param('shortUrl') shortUrl: string) {
+    return new ResponseBody(
+      RESPONSE_STATUS.SUCCESS.OK,
+      '원본 url 조회 성공',
+      await this.shortUrlService.getOriginalUrl(shortUrl),
+    )
+  } 
 }

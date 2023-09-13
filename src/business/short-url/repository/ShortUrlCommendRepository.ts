@@ -5,7 +5,7 @@ import { Service } from 'typedi';
 import { shortUrlCommend } from './query/ShortUrlCommend';
 
 @Service()
-export class ShortUrlRepository {
+export class ShortUrlCommendRepository {
   public async insertShortUrl(originalUrl: string, shortUrl: string): Promise<DMLResult[]> {
     return await execute<DMLResult[]>(shortUrlCommend.insertShortUrl, [originalUrl, shortUrl]);
   }

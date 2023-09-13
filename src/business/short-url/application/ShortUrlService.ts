@@ -1,6 +1,8 @@
 import { Service } from 'typedi';
+import { BadRequestError } from 'routing-controllers';
 
-import { ShortUrlRepository } from '../repository/ShortUrlCommendRepository';
+import { ShortUrlCommendRepository } from '../repository/ShortUrlCommendRepository';
+import { ShortUrlQueryRepository } from '../repository/ShortUrlQueryRepository';
 
 import { 
   RANDOM_CHARACTER_LIST,
@@ -10,17 +12,19 @@ import {
 import { convertShortUrlRequest } from '../model/request/ShortUrlRequest';
 
 
+
 @Service()
 export class ShortUrlService {
   constructor(
-    private shortUrlRepository: ShortUrlRepository, 
+    private shortUrlCommendRepository: ShortUrlCommendRepository, 
+    private shortUrlQueryRepository: ShortUrlQueryRepository,
   ) {}
 
   public async convertShortUrl(convertShortUrlRequest: convertShortUrlRequest) {
     const { originalUrl } = convertShortUrlRequest;
     const shortUrl = this.shortenUrl();
     
-    await this.shortUrlRepository.insertShortUrl(originalUrl, shortUrl);
+    await this.shortUrlCommendRepository.insertShortUrl(originalUrl, shortUrl);
     return { shortUrl };
   }
 
@@ -31,5 +35,15 @@ export class ShortUrlService {
     }
 
     return randomShortUrl;
+  }
+
+  public async getOriginalUrl(shortUrl: string) {
+    const originalUrl = await this.shortUrlQueryRepository.selectOriginalUrlByShortUrl(shortUrl);
+
+    if(originalUrl === ''){
+      throw new BadRequestError('존재하지 않는 단축 url.');
+    }
+
+    return { originalUrl };
   }
 }
