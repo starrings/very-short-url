@@ -18,7 +18,7 @@ export class App {
 
   // 데이터 베이스 세팅
   private async setDatabase(): Promise<void> {
-    try{
+    try {
       createDBPool();
     } catch (err) {
       console.error(err);
@@ -41,14 +41,14 @@ export class App {
   public async createExpressServer(port: number): Promise<void> {
     try {
       // typedi를 사용하는 경우 사용
-      useContainer(Container); 
+      useContainer(Container);
       useExpressServer(this.app, routingControllerOptions);
 
       this.app.listen(port, () => {
         console.info(`서버 가동중... 포트번호 ${port}`);
-      })
-    } catch (err){
+      });
+    } catch (err) {
       console.error(err);
     }
   }
-};
+}

@@ -8,4 +8,4 @@ export const shortUrlQuery = {
       ust.short_url = ?
     ;
   `,
-}
+};

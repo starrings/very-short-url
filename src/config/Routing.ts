@@ -6,8 +6,6 @@ export const routingControllerOptions = {
   cors: true,
   defaultErrorHandler: false,
   routePrefix: APP_CONFIG.API_PREFIX,
-  controllers: [
-    ShortUrlController,
-  ],
+  controllers: [ShortUrlController],
   middlewares: [CustomErrorHandler],
-}
+};

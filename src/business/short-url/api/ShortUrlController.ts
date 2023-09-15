@@ -1,21 +1,7 @@
 // third party
-import {
-  Get,
-  Post,
-  Patch,
-  Body,
-  HttpCode,
-  JsonController,
-  QueryParam,
-  Req,
-  Res,
-  UseBefore,
-  Delete,
-  Param,
-} from 'routing-controllers';
+import { Get, Post, Body, HttpCode, JsonController, Param } from 'routing-controllers';
 import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
 import { Service } from 'typedi';
-import { Response } from 'express';
 // utils
 import { RESPONSE_CODE } from '../../../config/StatusCode';
 import { RESPONSE_STATUS } from '../../../config/Status';
@@ -62,6 +48,6 @@ export class ShortUrlController {
       RESPONSE_STATUS.SUCCESS.OK,
       '원본 url 조회 성공',
       await this.shortUrlService.getOriginalUrl(shortUrl),
-    )
-  } 
+    );
+  }
 }
