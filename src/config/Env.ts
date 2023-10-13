@@ -12,6 +12,10 @@ export const APP_CONFIG = {
   PORT: Number(process.env.PORT) || 8282,
 };
 
+export const SWAGGER_CONFIG = {
+  ROUTE: String(process.env.SWAGGER_ROUTE),
+};
+
 export const DB_CONFIG = {
   DB_HOST: String(process.env.MY_SQL_DB_HOST),
   DB_USER: String(process.env.MY_SQL_DB_USER),

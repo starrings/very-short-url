@@ -6,6 +6,7 @@ import { Container } from 'typedi';
 import { useContainer, useExpressServer } from 'routing-controllers';
 import { createDBPool } from './common/module/Database';
 import { routingControllerOptions } from './config/Routing';
+import { useSwagger } from './common/module/Swagger';
 export class App {
   public app: express.Application;
 
@@ -43,6 +44,7 @@ export class App {
       // typedi를 사용하는 경우 사용
       useContainer(Container);
       useExpressServer(this.app, routingControllerOptions);
+      useSwagger(this.app);
 
       this.app.listen(port, () => {
         console.info(`서버 가동중... 포트번호 ${port}`);
